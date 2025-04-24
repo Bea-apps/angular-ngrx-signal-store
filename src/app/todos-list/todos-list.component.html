@@ -21,7 +21,7 @@
 
         <mat-list-option>
             <div class="todo-item">
-                <mat-icon class="delete-icon">delete</mat-icon>
+                <mat-icon class="delete-icon" (click)="onDeleteTodo(todo.id, $event)">delete</mat-icon>
                 <span>
                     {{ todo.title }}
                 </span>

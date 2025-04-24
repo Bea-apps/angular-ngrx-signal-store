@@ -24,6 +24,11 @@ export class TodosService {
         } as Todo;
     }
 
+    // Simulate the delete item from the backend.
+    async deleteTodo(id: string): Promise<void> {
+        await sleep(500);
+    }
+
 }
 
 async function sleep(ms: number) {

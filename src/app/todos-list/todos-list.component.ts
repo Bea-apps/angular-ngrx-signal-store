@@ -23,12 +23,13 @@ export class TodosListComponent {
   store = inject(TodosStore);
 
   async onAddTodo(title: string) {
-
     await this.store.addTodo(title);
-
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
 
-
+  async onDeleteTodo(id: string, event: MouseEvent): Promise<void> {
+    event.stopPropagation();
+    await this.store.deleteTodo(id);
   }
 
 
