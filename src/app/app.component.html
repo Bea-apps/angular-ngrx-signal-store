@@ -30,6 +30,11 @@
     <a href="https://angular-university.io">angular-university</a>
   </div>
 
-  <todos-list />
+  @if (!store.loading()) {
+    <todos-list />
+  }
+  @else {
+  <mat-spinner></mat-spinner>
+  }
 
 </div>
