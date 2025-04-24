@@ -24,8 +24,13 @@ export class TodosService {
         } as Todo;
     }
 
-    // Simulate the delete item from the backend.
+    // Use sleep to simulate the delete item from the backend.
     async deleteTodo(id: string): Promise<void> {
+        await sleep(500);
+    }
+
+    // Simulate the update item from the backend.
+    async updateTodo(id: string, completed: boolean) {
         await sleep(500);
     }
 

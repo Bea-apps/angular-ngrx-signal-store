@@ -1,14 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { TodosStore } from './store/todos.store';
-import { JsonPipe } from '@angular/common';
 import { TodosListComponent } from "./todos-list/todos-list.component";
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet, 
     TodosListComponent,
     MatProgressSpinnerModule
   ],

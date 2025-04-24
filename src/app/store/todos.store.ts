@@ -35,7 +35,7 @@ export const TodosStore = signalStore(
             patchState(store, {todos, loading: false});
         },
 
-        async addTodo(title: string) {
+        async addTodo(title: string): Promise<void> {
 
             const todo = await todosService.addTodo({title, completed: false});
             patchState(store, (state) => ({
@@ -43,11 +43,20 @@ export const TodosStore = signalStore(
             }));
         },
 
-        async deleteTodo(id: string) {
+        async deleteTodo(id: string): Promise<void> {
 
             await todosService.deleteTodo(id);
             patchState(store, (state) => ({
                 todos: state.todos.filter(todo => todo.id !== id)
+            }));
+
+        },
+
+        async updateTodo(id: string, completed: boolean): Promise<void> {
+            await todosService.updateTodo(id, completed);
+            patchState(store, (state) => ({
+                todos: state.todos.map(todo => 
+                    todo.id === id ? {...todo, completed} : todo)
             }));
 
         }

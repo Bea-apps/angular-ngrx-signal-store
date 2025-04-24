@@ -5,6 +5,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import { TodosStore } from '../store/todos.store';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'todos-list',
@@ -13,7 +14,8 @@ import { TodosStore } from '../store/todos.store';
     MatIconModule,
     MatInputModule,
     MatButtonToggleModule,
-    MatListModule
+    MatListModule,
+    CommonModule
   ],
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss'
@@ -22,7 +24,7 @@ export class TodosListComponent {
 
   store = inject(TodosStore);
 
-  async onAddTodo(title: string) {
+  async onAddTodo(title: string): Promise<void> {
     await this.store.addTodo(title);
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }
@@ -32,6 +34,8 @@ export class TodosListComponent {
     await this.store.deleteTodo(id);
   }
 
-
+  async onToggle(id: string, completed: boolean): Promise<void> {
+    await this.store.updateTodo(id, completed);
+  }
 
 }
