@@ -1,7 +1,7 @@
 import { TodosService } from './../services/todos.service';
 import { Todo } from "../model/todo.model";
-import { patchState, signalStore, withMethods, withState } from "@ngrx/signals";
-import { inject } from '@angular/core';
+import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
+import { computed, inject } from '@angular/core';
 
 export type TodosFilter = "all" | "pending" | "completed";
 
@@ -18,7 +18,7 @@ type TodosState = {
 const initialState: TodosState = {
     todos: [],
     loading: false,
-    filter: "all",
+    filter: "completed",
 };
 
 // Capital T because is an angular injectable.
@@ -58,10 +58,28 @@ export const TodosStore = signalStore(
                 todos: state.todos.map(todo => 
                     todo.id === id ? {...todo, completed} : todo)
             }));
+        },
 
+        updateFilter(filter: TodosFilter) {
+            patchState(store, {filter}); // partial state object.
         }
 
 
+    })),
+    // use of concept derived signals for update filtered list items in the signal store.
+    // 'withComputed' allow us to derive a new signal property.
+    withComputed((state) => ({
+        filteredTodos: computed(() => {
+            const todos = state.todos();
+            switch(state.filter()) {
+                case "all": 
+                    return todos;
+                case "pending":
+                    return todos.filter((todo: Todo) => !todo.completed);
+                case "completed":
+                    return todos.filter((todo: Todo) => todo.completed);
+            }
+        })
     }))
 
 
