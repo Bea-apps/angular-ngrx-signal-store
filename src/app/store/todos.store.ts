@@ -18,7 +18,7 @@ type TodosState = {
 const initialState: TodosState = {
     todos: [],
     loading: false,
-    filter: "completed",
+    filter: "pending",
 };
 
 // Capital T because is an angular injectable.
