@@ -2,7 +2,7 @@
 
 Credits to Angular University.
 
-This project is about building a TODO app from scratch using NgRx Signal Store.
+This project is about building a todo list items app from scratch using NgRx Signal Store.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
 
