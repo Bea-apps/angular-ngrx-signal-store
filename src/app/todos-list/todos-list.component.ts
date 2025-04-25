@@ -1,19 +1,21 @@
 import { Component, effect, inject, viewChild } from '@angular/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule } from '@angular/material/icon';
+import {MatFormField, MatFormFieldModule, MatLabel} from '@angular/material/form-field';
+import {MatIcon } from '@angular/material/icon';
 import {MatButtonToggleGroup, MatButtonToggle, MatButtonToggleChange} from '@angular/material/button-toggle';
-import {MatListModule} from '@angular/material/list';
-import {MatInputModule} from '@angular/material/input';
+import {MatListModule, MatListOption, MatSelectionList} from '@angular/material/list';
+import {MatInput} from '@angular/material/input';
 import { TodosFilter, TodosStore } from '../store/todos.store';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'todos-list',
   imports: [
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
+    MatFormField,
+    MatLabel,
+    MatIcon,
+    MatInput,
+    MatListOption,
+    MatSelectionList,
     MatButtonToggleGroup,
     MatButtonToggle,
     CommonModule
